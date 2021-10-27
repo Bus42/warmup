@@ -5,12 +5,6 @@ const port = 5000;
 
 const server = express();
 
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader("Content-Type", "text/plain");
-//   res.end("Hello Node");
-// });
-
 server.get("/", (req, res) => {
   res.send("Hello Express!");
 });
