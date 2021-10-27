@@ -9,6 +9,10 @@ server.get("/", (req, res) => {
   res.send("Hello Express!");
 });
 
+server.get("/foo", (req, res) => {
+    res.send("bar")
+})
+
 server.listen(port, hostname, () => {
   console.log(`server listening on http://${hostname}:${port}`);
 });
