@@ -1,24 +1,24 @@
 const express = require("express");
-
-const hostname = "127.0.0.1";
+const morgan = require("morgan");
 const port = 5000;
 const server = express();
-server.use(express.json)
+server.use(express.json);
+server.use(morgan("dev"));
 
 const hobbits = [
   {
     id: 1,
-    name: 'Samwise Gamgee',
+    name: "Samwise Gamgee",
   },
   {
     id: 2,
-    name: 'Frodo Baggins',
+    name: "Frodo Baggins",
   },
 ];
 
 server.get("/foo", (req, res) => {
-  res.send("bar")
-})
+  res.send("bar");
+});
 
 server.get("/", (req, res) => {
   res.send("Hello Express!");
@@ -26,15 +26,16 @@ server.get("/", (req, res) => {
 
 server.get("/hobbits", (req, res) => {
   res.status(200).json(hobbits);
-})
+});
 
 server.post("/hobbits", (req, res) => {
-  // const hobbit = {...req.body, id: Date.now()};
+  console.log(req.body || "error");
+  const hobbit = req.body;
   // hobbits.push(hobbit);
   // res.status(201).send(hobbits)
-  res.send("record created");
-})
+  res.status(200).json({ hobbit });
+});
 
-server.listen(port, hostname, () => {
-  console.log(`server listening on http://${hostname}:${port}`);
+server.listen(port, () => {
+  console.log(`server listening on port ${port}`);
 });
