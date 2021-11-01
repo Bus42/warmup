@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const port = 5000;
 const server = express();
-server.use(express.json);
+server.use(express.json());
 server.use(morgan("dev"));
 
 const hobbits = [
